@@ -18,4 +18,17 @@ describe("USER END-POINT-TEST", () => {
         done();
       });
   });
+
+  it("Should not login", (done) => {
+    request(app)
+      .post("/api/v1/users/login")
+      .send({
+        email: "test",
+        password: "test",
+      })
+      .end((err, res) => {
+        expect(res.statusCode).to.equal(403);
+        done();
+      });
+  });
 });
