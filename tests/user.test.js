@@ -6,13 +6,16 @@ import 'dotenv/config';
 use(chaiHttp)
 
 describe("USER END-POINT-TEST", () => {
-    // it("Should retrieve the articles", async () => {
-    //     const res = await request(app).get("/api/v1/aritcles/")
-    //     expect(res).to.have.status([200])
-    //     expect(res.type).to.have.equal("application/json")
-    // })
-    // it("Should not retrieve the articles", async () => {
-    //     const res = await request(app).get("/api/v1/aritcle/")
-    //     expect(res).to.have.status([404])
-    // })
-})
+  it("should accept user to login", (done) => {
+    request(app)
+      .post("/api/v1/users/login")
+      .send({
+        email: "ncuti65@gmail.com",
+        password: "Pass@123",
+      })
+      .end((err, res) => {
+        expect(res.statusCode).to.equal(200);
+        done();
+      });
+  });
+});
